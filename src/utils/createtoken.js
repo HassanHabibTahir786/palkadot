@@ -16,7 +16,10 @@ export const tokenCreation = async (sdk, address, collection_Id) => {
         2: "foo_bar",
       },
       image: {
-        ipfsCid: "https://ipfs.io/",
+        fullUrl:
+          "https://imgd.aeplcdn.com/1056x594/n/cw/ec/44686/activa-6g-right-front-three-quarter.jpeg",
+        ipfsCid:
+          "https://imgd.aeplcdn.com/1056x594/n/cw/ec/44686/activa-6g-right-front-three-quarter.jpeg",
       },
     },
   };

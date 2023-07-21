@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { AppContextProvider } from "./utils";
+// import { AppContextProvider } from "./utils";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import theme from "./theme";
 import { BrowserRouter } from "react-router-dom";
@@ -14,10 +14,7 @@ root.render(
     <BrowserRouter>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-
-        <AppContextProvider>
-          <App />
-        </AppContextProvider>
+        <App />
       </ThemeProvider>
     </BrowserRouter>
   </React.StrictMode>

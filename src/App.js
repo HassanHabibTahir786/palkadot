@@ -1,11 +1,5 @@
 import "@polkadot/wasm-crypto/initWasmAsm";
-import { useCallback, useContext, useEffect, useState } from "react";
-
-import Stacking from "./Components/Stacking";
-import ViewStackingTable from "./Components/ViewStackingTable";
-import Header from "./Components/Header";
-import { AppContext } from "./utils";
-import NetworkChange from "./network";
+import { useCallback, useState } from "react";
 
 // polka dot
 import { MetamaskProvider } from "@unique-nft/accounts/metamask";
@@ -29,7 +23,11 @@ import { Box, Button } from "@mui/material";
 import { mnemonicGenerate } from "@polkadot/util-crypto";
 import Loading from "./ConnectivityAssets/Loading";
 import { tokenCreation } from "./utils/createtoken";
-
+// import {
+//   AttributeType,
+//   COLLECTION_SCHEMA_NAME,
+// } from "@unique-nft/substrate-client/tokens";
+// import { AttributeType } from "@unique-nft/substrate-client/tokens";
 function createSdk(account) {
   const options = {
     baseUrl: "https://rest.unique.network/opal/v1",
@@ -38,6 +36,19 @@ function createSdk(account) {
   return new Sdk(options);
 }
 
+// AttributeType {
+//   number = "number",
+//   integer = "integer",
+//   float = "float",
+//   boolean = "boolean",
+//   timestamp = "timestamp",
+//   string = "string",
+//   url = "url",
+//   isoDate = "isoDate",
+//   time = "time",
+//   colorRgba = "colorRgba"
+// }
+
 async function createCollection(sdk, address) {
   if (sdk && address) {
     const { parsed, error } = await sdk.collection.creation.submitWaitResult({
@@ -45,6 +56,48 @@ async function createCollection(sdk, address) {
       name: "Test collection",
       description: "My test collection",
       tokenPrefix: "TST",
+      // schema: {
+      //   schemaName: "1663eh37273h",
+      //   schemaVersion: "1.0.0",
+      //   coverPicture: {
+      //     ipfsCid: "Qmc1Dj8m4z2vcojjJjp348FKffmSjopSFTgATpU8gUx5k1",
+      //   },
+      //   image: {
+      //     urlTemplate:
+      //       "https://ipfs.unique.network/ipfs/Qmc1Dj8m4z2vcojjJjp348FKffmSjopSFTgATpU8gUx5k1",
+      //   },
+      //   attributesSchemaVersion: "1.0.0",
+      //   attributesSchema: {
+      //     0: {
+      //       name: { _: "gender" },
+      //       // type: ,
+      //       optional: true,
+      //       isArray: false,
+      //       enumValues: {
+      //         0: { _: "male" },
+      //         1: { _: "female" },
+      //       },
+      //     },
+      //     1: {
+      //       name: { _: "name" },
+      //       isArray: false,
+      //       optional: false,
+      //       // type: "string",
+      //     },
+      //     2: {
+      //       name: { _: "color" },
+      //       isArray: true,
+      //       // type: "string",
+      //       optional: true,
+      //       enumValues: {
+      //         0: { _: "black" },
+      //         1: { _: "white" },
+      //         2: { _: "gray" },
+      //         3: { _: "brown" },
+      //       },
+      //     },
+      //   },
+      // },
     });
 
     if (error) {
@@ -121,32 +174,8 @@ function App() {
 
   return (
     <div>
-      {/* <NetworkChange open={networkModal} setOpen={setNetworkModal} /> */}
       <Loading isLoading={loading} />
       <Button onClick={() => submitHandler()}>Mint NFT</Button>
-      <Routes>
-        {/* <Route
-          path="/"
-          element={
-            <Box>
-              <HeaderMain />
-              <Home />
-            </Box>
-          }
-        /> */}
-
-        <Route
-          path="/"
-          element={
-            <Box>
-              {/* <Header /> */}
-              {/* <HeroSection /> */}
-              {/* <Stacking />
-              <ViewStackingTable /> */}
-            </Box>
-          }
-        />
-      </Routes>
     </div>
   );
 }
